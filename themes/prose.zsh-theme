@@ -9,7 +9,7 @@ function prompt_char {
 }
 
 function battery_charge {
-    echo `$BAT_CHARGE` 2>/dev/null
+    echo `batcharge.py` 2>/dev/null
 }
 
 function virtualenv_info {
@@ -24,8 +24,12 @@ function hg_prompt_info {
 patches: <patches|join( → )|pre_applied(%{$fg[yellow]%})|post_applied(%{$reset_color%})|pre_unapplied(%{$fg_bold[black]%})|post_unapplied(%{$reset_color%})>>" 2>/dev/null
 }
 
+# PROMPT='
+# %{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
+# $(virtualenv_info)$(prompt_char) '
+
 PROMPT='
-%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
+%{$fg[magenta]%}%n%{$reset_color%} in %{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
 $(virtualenv_info)$(prompt_char) '
 
 RPROMPT='$(battery_charge)'
